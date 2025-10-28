@@ -1,0 +1,22 @@
+pre-commit:
+  parallel: false
+  jobs:
+    - name: end-of-file-fixer
+      run: end-of-file-fixer {staged_files}
+    - name: trailing-whitespace-fixer
+      run: trailing-whitespace-fixer {staged_files}
+    - name: actionlint
+      run: actionlint {staged_files}
+      glob: ".github/workflows/*.{yaml,yml}"
+    - name: shellcheck
+      run: shellcheck {staged_files}
+      file_types:
+        - text/x-shellscript
+    - name: golangci-lint
+      run: |
+        for f in {all_files}; do
+          golangci-lint fmt -d "$f" || { golangci-lint fmt "$f"; EXITCODE=1; }
+        done
+        golangci-lint run --timeout=5m || EXITCODE=1 # does not support file parameters in multiple directories
+        exit "${EXITCODE:-0}"
+      glob: "*.go"

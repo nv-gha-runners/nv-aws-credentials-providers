@@ -1,0 +1,14 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@ca0c5fc9c8a8386dae8ba5d37608a083a307991c # v3.1.0
+      - run: mise lint
+      - run: mise test

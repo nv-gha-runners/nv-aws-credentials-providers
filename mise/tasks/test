@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#MISE description="Run Go tests"
+
+set -euo pipefail
+
+go test -v ./... -cover -race
