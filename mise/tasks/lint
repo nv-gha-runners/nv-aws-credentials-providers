@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-#MISE description="Run all linting checks via lefthook"
+#MISE description="Run prek hooks for lints"
 
 set -euo pipefail
 
-lefthook run pre-commit --all-files
+prek run -a
