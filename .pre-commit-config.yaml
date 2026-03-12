@@ -1,0 +1,32 @@
+default_install_hook_types:
+  - pre-commit
+minimum_prek_version: 0.3.4
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: end-of-file-fixer
+        priority: 0
+      - id: trailing-whitespace
+        priority: 1
+  - repo: local
+    hooks:
+      - id: actionlint
+        name: actionlint
+        language: system
+        entry: actionlint
+        files: ^\.github/workflows/.*\.(yaml|yml)$
+        priority: 2
+      - id: shellcheck
+        name: shellcheck
+        language: system
+        entry: shellcheck
+        types: [shell]
+        priority: 2
+      - id: golangci-lint
+        name: golangci-lint
+        language: system
+        entry: golangci-lint run --timeout=5m
+        types: [go]
+        pass_filenames: false
+        priority: 2
