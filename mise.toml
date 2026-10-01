@@ -2,9 +2,9 @@
 # renovate: packageName=rhysd/actionlint extractVersion=^v(?<version>.*)$
 actionlint = "1.7.8"
 # renovate: packageName=golang/go extractVersion=^go(?<version>.*)$
-go = "1.25.3"
+go = "1.27.1"
 # renovate: packageName=golangci/golangci-lint extractVersion=^v(?<version>.*)$
-golangci-lint = "2.5.0"
+golangci-lint = "2.13.2"
 # renovate: packageName=j178/prek extractVersion=^v(?<version>.*)$
 prek = { version = "0.3.4", postinstall = "prek install -f --install-hooks" }
 # renovate: packageName=koalaman/shellcheck extractVersion=^v(?<version>.*)$
